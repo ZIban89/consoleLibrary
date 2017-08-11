@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context    
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+	<bean id="userService" class="by.htp.nikonov.task01.service.impl.UserServiceImpl" />
+	<bean id="bookService" class="by.htp.nikonov.task01.service.impl.BookServiceImpl" />
+	<bean id="initializationService"
+		class="by.htp.nikonov.task01.service.impl.InitializationServiceImpl" />
+
+
+	<bean id="serviceFactory" class="by.htp.nikonov.task01.service.factory.ServiceFactory">
+		<constructor-arg ref="userService" />
+		<constructor-arg ref="bookService" />
+		<constructor-arg ref="initializationService" />
+	</bean>
+
+	<bean id="commandProvider"
+		class="by.htp.nikonov.task01.controller.command.CommandProvider" />
+
+	<bean id="DBResourceManager" class="by.htp.nikonov.task01.dao.connection.manager.DBResourceManager"/>
+	
+
+	<bean id="userDAO" class="by.htp.nikonov.task01.dao.impl.UserDAOImpl" />
+	<bean id="bookDAO" class="by.htp.nikonov.task01.dao.impl.BookDAOImpl" />
+	<bean id="initializationDAO" class="by.htp.nikonov.task01.dao.impl.InitializationDAOImpl" />
+
+	<bean id="DAOFactory" class="by.htp.nikonov.task01.dao.factory.DAOFactory">
+		<constructor-arg ref="userDAO" />
+		<constructor-arg ref="bookDAO" />
+		<constructor-arg ref="initializationDAO" />
+	</bean>
+
+
+
+	<!-- <bean id="" class=""/> -->
+</beans>
