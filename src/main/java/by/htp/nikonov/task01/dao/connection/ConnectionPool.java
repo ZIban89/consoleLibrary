@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import by.htp.nikonov.task01.dao.connection.manager.DBParameter;
 import by.htp.nikonov.task01.dao.connection.manager.DBResourceManager;
 import by.htp.nikonov.task01.dao.exception.ConnectionPoolException;
@@ -20,6 +23,8 @@ import by.htp.nikonov.task01.dao.exception.DAOException;
 import by.htp.nikonov.task01.tools.ApplicationContextTool;
 
 public final class ConnectionPool implements Closeable{	
+	
+	private static final Logger log = Logger.getLogger(ConnectionPool.class);
 	private static final ConnectionPool instance = new ConnectionPool();
 	private BlockingQueue<Connection> freeConnection;
 	private BlockingQueue<Connection> busyConnection;
@@ -100,7 +105,7 @@ public final class ConnectionPool implements Closeable{
 					connection.close();
 				}
 			} catch (SQLException e) {
-//				LOGGER.error(e);
+				log.error(e);
 			}
 		}
 	}
@@ -110,7 +115,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -118,7 +124,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				st.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "Statement isn't closed", e);
+
+				log.log(Level.ERROR, "Statement isn't closed", e);
 			}
 		}
 		
@@ -126,7 +133,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				preSt.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "PrepareStatement ins't closed", e);
+
+				log.log(Level.ERROR, "PrepareStatement ins't closed", e);
 			}
 		}
 		
@@ -134,7 +142,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				rs.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "ResultSet ins't closed", e);
+
+				log.log(Level.ERROR, "ResultSet ins't closed", e);
 			}
 		}
 	}
@@ -144,7 +153,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -152,7 +162,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				st.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "Statement isn't closed", e);
+
+				log.log(Level.ERROR, "Statement isn't closed", e);
 			}
 		}
 	}
@@ -162,7 +173,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -170,7 +182,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				preSt.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "PrepareStatement ins't closed", e);
+
+				log.log(Level.ERROR, "PrepareStatement ins't closed", e);
 			}
 		}
 	}
@@ -180,7 +193,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -188,7 +202,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				rs.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "ResultSet ins't closed", e);
+
+				log.log(Level.ERROR, "ResultSet ins't closed", e);
 			}
 		}
 	}
@@ -198,7 +213,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -206,7 +222,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				st.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "Statement isn't closed", e);
+
+				log.log(Level.ERROR, "Statement isn't closed", e);
 			}
 		}
 		
@@ -214,7 +231,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				preSt.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "PrepareStatement ins't closed", e);
+
+				log.log(Level.ERROR, "PrepareStatement ins't closed", e);
 			}
 		}
 		
@@ -225,7 +243,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -233,7 +252,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				preSt.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "PrepareStatement ins't closed", e);
+
+				log.log(Level.ERROR, "PrepareStatement ins't closed", e);
 			}
 		}
 		
@@ -241,7 +261,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				rs.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "ResultSet ins't closed", e);
+
+				log.log(Level.ERROR, "ResultSet ins't closed", e);
 			}
 		}
 	}
@@ -251,7 +272,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				free(con);
 			} catch (InterruptedException | DAOException e) {
-//				LOGGER.log(Level.ERROR, "Connection isn't return to the pool", e);
+
+				log.log(Level.ERROR, "Connection isn't return to the pool", e);
 			}
 		}
 		
@@ -259,7 +281,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				st.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "Statement isn't closed", e);
+
+				log.log(Level.ERROR, "Statement isn't closed", e);
 			}
 		}
 		
@@ -267,7 +290,8 @@ public final class ConnectionPool implements Closeable{
 			try {
 				rs.close();
 			} catch (SQLException e) {
-//				LOGGER.log(Level.ERROR, "ResultSet ins't closed", e);
+
+				log.log(Level.ERROR, "ResultSet ins't closed", e);
 			}
 		}
 	}
